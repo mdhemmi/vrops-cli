@@ -10,10 +10,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-//var wg sync.WaitGroup
-
 func Action_SearchvROPs(vropsdata *VROPsData) {
-	//defer wg.Done()
 	if Check_Service_Availability(vropsdata.FQDN, 443) {
 
 		token := Get_vrops_token(vropsdata.FQDN, vropsdata.Username, vropsdata.Password, vropsdata.Auth, vropsdata.Debug, vropsdata.Insecure)
@@ -136,19 +133,4 @@ func Action_SearchvROPs(vropsdata *VROPsData) {
 	}
 }
 
-/*
-func Action_SearchvROPs(vropsdata *VROPsData) {
-	//fmt.Println("Action_SearchvROPs")
 
-	fullusername := vropsdata.Username + "@ad.global.cloud.sap"
-	allresult := reqnetbox.GetvCOPs().Results
-	for _, item := range allresult {
-		ip := strings.ReplaceAll(item.PrimaryIP4.Address, "/25", "")
-		vropsfqdn := item.Name
-		go Do_vROPs(vropsdata, vropsfqdn, ip, fullusername)
-		wg.Add(1)
-
-	}
-	wg.Wait()
-}
-*/
